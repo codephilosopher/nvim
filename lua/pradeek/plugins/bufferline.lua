@@ -5,8 +5,13 @@ return {
   opts = {
     options = {
       mode = "tabs",
-      seperate_style = "slant",
-
+      seperate_style = "padded_slant",
+      offsets = {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        highlight = "Directory",
+        seperator = true,
+      },
     },
   },
 }

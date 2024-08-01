@@ -8,9 +8,9 @@ return {
   config = function()
     -- import nvim-treesitter plugin
     local treesitter = require("nvim-treesitter.configs")
-
     -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    treesitter.setup({
+      -- enable syntax highlighting
       highlight = {
         enable = true,
       },
@@ -27,12 +27,21 @@ return {
         "typescript",
         "tsx",
         "yaml",
+        "perl",
+        "python",
+        "php",
+        "java",
+        "go",
+        "nasm",
+        "ruby",
+        "rust",
+        "sql",
+        "toml",
         "html",
         "css",
         "prisma",
         "markdown",
         "markdown_inline",
-        "svelte",
         "graphql",
         "bash",
         "lua",
