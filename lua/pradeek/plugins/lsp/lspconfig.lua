@@ -129,11 +129,6 @@ return {
 					capabilities = capabilities,
 				})
 			end,
-			["ruby_lsp"] = function()
-				lspconfig["ruby"].setup({
-					capabilities = capabilities,
-				})
-			end,
 		})
 	end,
 }

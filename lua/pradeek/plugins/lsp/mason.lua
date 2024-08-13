@@ -46,7 +46,6 @@ return {
 				"intelephense",
 				"perlnavigator",
 				"pyright",
-				"ruby_lsp",
 				"taplo",
 				"rust_analyzer",
 				"hydra_lsp",
@@ -59,11 +58,10 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
-				"pylint",
 				"eslint_d",
 				"asmfmt",
 				"clang-format",
-				"rubyfmt",
+				"cmakelint",
 			},
 		})
 	end,
