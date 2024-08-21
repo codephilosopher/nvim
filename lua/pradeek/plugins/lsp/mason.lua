@@ -62,6 +62,7 @@ return {
 				"asmfmt",
 				"clang-format",
 				"cmakelint",
+				"htmlbeautifier",
 			},
 		})
 	end,
