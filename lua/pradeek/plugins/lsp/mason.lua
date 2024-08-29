@@ -49,6 +49,7 @@ return {
 				"taplo",
 				"rust_analyzer",
 				"hydra_lsp",
+				"phpactor",
 			},
 		})
 
@@ -63,6 +64,7 @@ return {
 				"clang-format",
 				"cmakelint",
 				"htmlbeautifier",
+				"blade-formatter",
 			},
 		})
 	end,
