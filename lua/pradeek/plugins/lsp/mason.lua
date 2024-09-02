@@ -50,6 +50,7 @@ return {
 				"rust_analyzer",
 				"hydra_lsp",
 				"phpactor",
+				"jdtls",
 			},
 		})
 
