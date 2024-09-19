@@ -51,6 +51,7 @@ return {
 				"hydra_lsp",
 				"phpactor",
 				"jdtls",
+				"angular-language-server",
 			},
 		})
 
