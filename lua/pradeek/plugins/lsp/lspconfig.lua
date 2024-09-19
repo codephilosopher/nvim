@@ -129,6 +129,11 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["angularls"] = function()
+				lspconfig["angularls"].setup({
+					capabilities = capabilities,
+				})
+			end,
 		})
 	end,
 }
