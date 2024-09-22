@@ -18,6 +18,15 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
+		local project_library_path = "/home/pradeek/.nvm/versions/node/v20.14.0/lib/node_modules"
+		local cmd = {
+			"/home/pradeek/.nvm/versions/node/v20.14.0/lib/node_modules/@angular/language-server/bin/ngserver",
+			"--stdio",
+			"--tsProbeLocations",
+			project_library_path,
+			"--ngProbeLocations",
+			project_library_path,
+		}
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -132,6 +141,11 @@ return {
 			["angularls"] = function()
 				lspconfig["angularls"].setup({
 					capabilities = capabilities,
+					filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+					cmd = cmd,
+					on_new_config = function(new_config, new_root_dir)
+						new_config.cmd = cmd
+					end,
 				})
 			end,
 		})
