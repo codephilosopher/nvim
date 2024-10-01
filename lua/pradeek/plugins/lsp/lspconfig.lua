@@ -18,15 +18,21 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
-		local project_library_path = "/home/pradeek/.nvm/versions/node/v20.14.0/lib/node_modules"
-		local cmd = {
-			"/home/pradeek/.nvm/versions/node/v20.14.0/lib/node_modules/@angular/language-server/bin/ngserver",
-			"--stdio",
-			"--tsProbeLocations",
-			project_library_path,
-			"--ngProbeLocations",
-			project_library_path,
-		}
+		local util = require("lspconfig.util")
+
+		local function get_probe_dir(root_dir)
+			local project_root = util.find_node_modules_ancestor(root_dir)
+
+			return project_root and (project_root .. "/node_modules") or ""
+		end
+
+		local default_probe_dir = get_probe_dir(vim.fn.getcwd())
+
+		local cmd =
+			{ "ngserver", "--stdio", "--tsProbeLocations", default_probe_dir, "--ngProbeLocations", default_probe_dir }
+
+		local filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
+		local root_dir = util.root_pattern("angular.json")
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -107,7 +113,6 @@ return {
 						"sass",
 						"scss",
 						"less",
-						"svelte",
 					},
 				})
 			end,
@@ -138,14 +143,30 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["ts_ls"] = function()
+				lspconfig["ts_ls"].setup({
+					capabilities = capabilities,
+					cmd = { "typescript-language-server", "--stdio" },
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"javascript.jsx",
+						"typescript",
+						"typescriptreact",
+						"typescript.tsx",
+					},
+					init_options = {
+						hostInfo = "neovim",
+					},
+					root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+					single_file_support = true,
+				})
+			end,
 			["angularls"] = function()
 				lspconfig["angularls"].setup({
-					capabilities = capabilities,
-					filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
 					cmd = cmd,
-					on_new_config = function(new_config, new_root_dir)
-						new_config.cmd = cmd
-					end,
+					filetypes = filetypes,
+					root_dir = root_dir,
 				})
 			end,
 		})
