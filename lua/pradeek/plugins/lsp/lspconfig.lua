@@ -20,19 +20,23 @@ return {
 
 		local util = require("lspconfig.util")
 
-		local function get_probe_dir(root_dir)
-			local project_root = util.find_node_modules_ancestor(root_dir)
+		-- local function get_probe_dir(root_dir)
+		-- 	local project_root = util.find_node_modules_ancestor(root_dir)
+		--
+		-- 	return project_root and (project_root .. "/node_modules") or ""
+		-- end
+		--
+		-- local default_probe_dir = get_probe_dir(vim.fn.getcwd())
 
-			return project_root and (project_root .. "/node_modules") or ""
-		end
+		-- local angular_probe =
+		-- 	"/home/pradeek/.local/share/nvim/mason/packages/angular-language-server/node_modules/@angular"
+		-- local tsls_probe = "/home/pradeek/.local/share/nvim/mason/packages/typescript-language-server"
+		--
+		-- local cmd = { "ngserver", "--stdio", "--tsProbeLocations", tsls_probe, "--ngProbeLocations", angular_probe }
+		--
+		-- local filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
+		-- local root_dir = util.root_pattern("angular.json")
 
-		local default_probe_dir = get_probe_dir(vim.fn.getcwd())
-
-		local cmd =
-			{ "ngserver", "--stdio", "--tsProbeLocations", default_probe_dir, "--ngProbeLocations", default_probe_dir }
-
-		local filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
-		local root_dir = util.root_pattern("angular.json")
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -164,9 +168,12 @@ return {
 			end,
 			["angularls"] = function()
 				lspconfig["angularls"].setup({
-					cmd = cmd,
-					filetypes = filetypes,
-					root_dir = root_dir,
+					capabilities = capabilities,
+				})
+			end,
+			["jdtls"] = function()
+				lspconfig["jdtls"].setup({
+					capabilities = capabilities,
 				})
 			end,
 		})
