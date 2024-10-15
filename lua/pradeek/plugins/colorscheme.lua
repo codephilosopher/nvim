@@ -1,19 +1,47 @@
--- return {
--- 	"blazkowolf/gruber-darker.nvim",
--- 	priority = 1000,
--- 	config = function()
--- 		vim.cmd("colorscheme gruber-darker")
--- 	end,
--- }
---
-
 return {
-	"rebelot/kanagawa.nvim",
+	"blazkowolf/gruber-darker.nvim",
 	priority = 1000,
 	config = function()
-		vim.cmd([[colorscheme kanagawa-wave]])
+		vim.cmd("colorscheme gruber-darker")
 	end,
 }
+
+-- return {
+-- 	"atelierbram/Base2Tone-nvim",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.cmd.colorscheme("base2tone_motel_dark")
+-- 	end,
+-- }
+
+-- return {
+-- 	"sainnhe/sonokai",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		-- Optionally configure and load the colorscheme
+-- 		-- directly inside the plugin declaration.
+-- 		vim.g.sonokai_enable_italic = true
+-- 		vim.g.sonokai_style = "default"
+-- 		vim.cmd.colorscheme("sonokai")
+-- 	end,
+-- }
+
+-- return {
+-- 	"savq/melange-nvim",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.opt.termguicolors = true
+-- 		vim.cmd([[colorscheme melange]])
+-- 	end,
+-- }
+
+-- return {
+-- 	"rebelot/kanagawa.nvim",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.cmd([[colorscheme kanagawa-dragon]])
+-- 	end,
+-- }
 
 -- return {
 -- 	"lalitmee/cobalt2.nvim",
@@ -40,7 +68,7 @@ return {
 -- 		vim.cmd.colorscheme("catppuccin-macchiato")
 -- 	end,
 -- }
-
+--
 --
 -- return {
 -- 	"mstcl/ivory",
