@@ -52,6 +52,7 @@ return {
 				"phpactor",
 				"jdtls",
 				"angularls",
+				"pylsp",
 			},
 		})
 

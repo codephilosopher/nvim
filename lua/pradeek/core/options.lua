@@ -4,7 +4,6 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
-
 -- tabs & intentations --
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width

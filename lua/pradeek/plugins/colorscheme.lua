@@ -7,6 +7,45 @@ return {
 }
 
 -- return {
+-- 	"talha-akram/noctis.nvim",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.cmd("colorscheme noctis")
+-- 	end,
+-- }
+--
+
+-- return {
+-- 	"embark-theme/vim",
+-- 	as = "embark",
+-- 	config = function()
+-- 		vim.cmd("colorscheme embark")
+-- 	end,
+-- }
+--
+-- return {
+-- 	"sainnhe/gruvbox-material",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	config = function()
+-- 		-- Optionally configure and load the colorscheme
+-- 		-- directly inside the plugin declaration.
+-- 		vim.g.gruvbox_material_enable_italic = true
+-- 		vim.g.gruvbox_material_background = "hard"
+-- 		vim.cmd.colorscheme("gruvbox-material")
+-- 	end,
+-- }
+
+-- return {
+-- 	"HoNamDuong/hybrid.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.cmd.colorscheme("hybrid")
+-- 	end,
+-- }
+--
+-- return {
 -- 	"atelierbram/Base2Tone-nvim",
 -- 	priority = 1000,
 -- 	config = function()
