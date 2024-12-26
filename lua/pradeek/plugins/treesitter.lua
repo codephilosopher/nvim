@@ -52,6 +52,9 @@ return {
 				"vimdoc",
 				"c",
 				"angular",
+				"elixir",
+				"eex",
+				"haskell",
 			},
 			incremental_selection = {
 				enable = true,

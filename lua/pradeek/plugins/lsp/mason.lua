@@ -41,7 +41,6 @@ return {
 				"jsonls",
 				"jdtls",
 				"jinja_lsp",
-				"autotools_ls",
 				"markdown_oxide",
 				"intelephense",
 				"perlnavigator",
@@ -53,6 +52,9 @@ return {
 				"jdtls",
 				"angularls",
 				"pylsp",
+				"erlangls",
+				"elixirls",
+				"hls",
 			},
 		})
 

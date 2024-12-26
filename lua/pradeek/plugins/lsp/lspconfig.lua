@@ -20,22 +20,26 @@ return {
 
 		local util = require("lspconfig.util")
 
-		-- local function get_probe_dir(root_dir)
-		-- 	local project_root = util.find_node_modules_ancestor(root_dir)
-		--
-		-- 	return project_root and (project_root .. "/node_modules") or ""
-		-- end
-		--
-		-- local default_probe_dir = get_probe_dir(vim.fn.getcwd())
+		local function get_probe_dir(root_dir)
+			local project_root = util.find_node_modules_ancestor(root_dir)
 
-		-- local angular_probe =
-		-- 	"/home/pradeek/.local/share/nvim/mason/packages/angular-language-server/node_modules/@angular"
-		-- local tsls_probe = "/home/pradeek/.local/share/nvim/mason/packages/typescript-language-server"
-		--
-		-- local cmd = { "ngserver", "--stdio", "--tsProbeLocations", tsls_probe, "--ngProbeLocations", angular_probe }
-		--
-		-- local filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
-		-- local root_dir = util.root_pattern("angular.json")
+			return project_root and (project_root .. "/node_modules") or ""
+		end
+
+		local default_probe_dir = get_probe_dir(vim.fn.getcwd())
+
+		local cmd = {
+			"ngserver",
+			"--stdio",
+			"--tsProbeLocations",
+			default_probe_dir,
+			"--ngProbeLocations",
+			default_probe_dir,
+		}
+
+		local filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
+
+		local root_dir = util.root_pattern("angular.json")
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -169,6 +173,9 @@ return {
 			["angularls"] = function()
 				lspconfig["angularls"].setup({
 					capabilities = capabilities,
+					cmd = cmd,
+					filetypes = filetypes,
+					root_dir = root_dir,
 				})
 			end,
 			["jdtls"] = function()
@@ -176,6 +183,54 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+
+			["erlangls"] = function()
+				lspconfig["erlangls"].setup({
+					capabilities = capabilities,
+				})
+			end,
+
+			-- ["lexical"] = function()
+			-- 	lspconfig["lexical"].setup({
+			-- 		cmd = { "/home/pradeek/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+			-- 		root_dir = function(fname)
+			-- 			return util.root_pattern("mix.exs", ".git")(fname) or vim.loop.cwd()
+			-- 		end,
+			-- 		filetypes = { "elixir", "eelixir", "heex" },
+			-- 		-- optional settings
+			-- 		settings = {},
+			-- 	})
+			-- end,
+			--
+			["elixirls"] = function()
+				lspconfig["elixirls"].setup({
+					cmd = { "/home/pradeek/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
+					capabilities = capabilities,
+					flags = {
+						debounce_text_changes = 150,
+					},
+					elixirLS = {
+						dialyzerEnabled = false,
+						fetchDeps = false,
+					},
+				})
+			end,
+
+			["hls"] = function()
+				lspconfig["hls"].setup({
+					cmd = { "haskell-language-server-wrapper", "--lsp" },
+					filetypes = { "haskell", "lhaskell" },
+					root_dir = util.root_pattern("hie.yaml", "stack.yaml", "cabal.project", "*.cabal", "package.yaml"),
+					single_file_support = true,
+					settings = {
+						haskell = {
+							formattingProvider = "ormolu",
+							cabalFormattingProvider = "cabalfmt",
+						},
+					},
+				})
+			end,
+
 			["pylsp"] = function()
 				lspconfig["pylsp"].setup({
 					language_server = "pylsp",
