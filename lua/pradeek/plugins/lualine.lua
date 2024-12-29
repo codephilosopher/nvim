@@ -10,6 +10,9 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
+				-- theme = "github_dark_default",
+				-- theme = "catppuccin",
+				--[[ ualine_style = "default", ]]
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
